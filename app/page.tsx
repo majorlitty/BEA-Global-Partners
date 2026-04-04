@@ -1,13 +1,10 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import { ArrowRight, Globe, Shield, TrendingUp, Building2, ChevronRight, Menu, Target, Users, Linkedin, Twitter, Mail } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 
 export default function Page() {
-  const [activeService, setActiveService] = useState<number | null>(0);
-
   return (
     <div className="min-h-screen bg-[#0a0f16] text-slate-200 selection:bg-amber-700/30">
       {/* Navigation */}
@@ -28,16 +25,17 @@ export default function Page() {
             </div>
           </div>
           
-          <div className="hidden lg:flex items-center gap-10 text-xs font-medium text-slate-300 tracking-widest uppercase">
+          <div className="hidden lg:flex items-center gap-10 text-sm font-medium text-slate-300 tracking-wide">
             {['Strategy', 'Risk Management', 'Governance', 'Global Markets'].map((item) => (
-              <a key={item} href="#" className="hover:text-white transition-colors flex items-center gap-1.5">
-                {item} <span className="text-slate-600">+</span>
+              <a key={item} href="#" className="relative group hover:text-amber-500 transition-colors py-1">
+                {item}
+                <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-amber-500 origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
               </a>
             ))}
           </div>
           
           <div className="flex items-center gap-6">
-            <button className="hidden md:inline-flex items-center justify-center px-6 py-2.5 border border-white/10 text-slate-300 hover:bg-white/5 hover:text-white transition-all text-sm font-medium rounded-sm">
+            <button className="hidden md:inline-flex items-center justify-center px-6 py-2.5 border border-amber-600/30 text-amber-500 hover:bg-amber-600 hover:text-white transition-all text-sm font-medium tracking-wide rounded-sm">
               Engage Our Firm
             </button>
             <button className="lg:hidden text-slate-300 hover:text-white">
@@ -48,88 +46,101 @@ export default function Page() {
       </motion.nav>
 
       {/* Hero Section */}
-      <main className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-screen flex flex-col justify-center border-b border-white/5">
+      <main className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-[90vh] flex flex-col justify-center border-b border-white/5">
         {/* Background Elements */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5 }}
-          className="absolute inset-0 z-0 flex items-end justify-center"
+          className="absolute inset-0 z-0"
         >
-          <div className="absolute inset-0 bg-[#0a0f16]"></div>
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2940&auto=format&fit=crop')] bg-cover bg-center opacity-[0.03] mix-blend-luminosity"></div>
           
-          {/* The image from previous step, positioned at the bottom like the globe */}
-          <div 
-            className="absolute bottom-0 w-full h-[85%] mix-blend-screen opacity-20" 
-            style={{ maskImage: 'linear-gradient(to top, black 20%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to top, black 20%, transparent 100%)' }}
-          >
-            <motion.div 
-              animate={{ 
-                scale: [1, 1.05, 1],
-                rotate: [0, 1, -1, 0]
-              }}
-              transition={{ 
-                duration: 20, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-              }}
-              className="absolute -inset-10 bg-[url('https://i.postimg.cc/TPPQqcj1/Whisk-f3cf6de16cabb8daf1b47369be7ce80ddr.jpg')] bg-contain bg-bottom bg-no-repeat origin-bottom"
-            />
-          </div>
+          {/* Subtle Grid */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
           
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f16] via-transparent to-transparent opacity-80"></div>
+          {/* Radial Gradients for depth */}
+          <div className="absolute top-0 left-1/4 w-1/2 h-1/2 bg-amber-900/10 blur-[120px] rounded-full pointer-events-none"></div>
+          <div className="absolute bottom-0 right-1/4 w-1/2 h-1/2 bg-blue-900/10 blur-[120px] rounded-full pointer-events-none"></div>
+          
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f16]/50 via-transparent to-[#0a0f16]"></div>
         </motion.div>
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 w-full text-center mt-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+          <div className="max-w-4xl">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="flex items-center justify-center gap-6 mb-10"
+              className="inline-flex items-center gap-4 mb-8"
             >
-              <div className="h-[1px] w-12 sm:w-24 bg-white/10"></div>
-              <span className="text-slate-300 text-xs font-medium tracking-[0.4em] uppercase">Global / Advisory</span>
-              <div className="h-[1px] w-12 sm:w-24 bg-white/10"></div>
+              <div className="h-[1px] w-12 bg-gradient-to-r from-amber-600 to-transparent"></div>
+              <span className="text-amber-500 text-xs font-bold tracking-[0.25em] uppercase">Strategic Advisory Firm</span>
             </motion.div>
             
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="text-5xl md:text-6xl lg:text-7xl xl:text-[84px] font-sans text-white leading-[1.1] mb-16 tracking-tight max-w-4xl mx-auto"
+              className="text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-serif text-white leading-[1.05] mb-8 tracking-tight"
             >
-              Discover the next breakthrough in global strategic innovation.
+              Navigating Complexity. <br />
+              <span className="text-slate-400 italic font-light">Unlocking Global Growth.</span>
             </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="text-lg md:text-xl text-slate-300 leading-relaxed mb-12 max-w-2xl font-light"
+            >
+              BEA Global Partners is a boutique strategic advisory firm helping organizations navigate complex regulatory environments, manage enterprise risk, and unlock global growth opportunities.
+            </motion.p>
             
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-16"
             >
-              <button className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-[#11151c] border border-white/5 text-slate-300 hover:bg-white/5 hover:text-white transition-all text-base rounded-md shadow-lg">
-                Our Services
-              </button>
-              <button className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-[#f5b301] text-[#0a0f16] hover:bg-[#e0a401] transition-all text-base font-medium rounded-md group shadow-lg">
+              <button className="inline-flex items-center justify-center px-8 py-4 bg-amber-600 text-white hover:bg-amber-700 transition-all text-sm font-medium tracking-wider uppercase rounded-sm group shadow-lg shadow-amber-900/20">
                 Explore Capabilities
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button className="inline-flex items-center justify-center px-8 py-4 border border-slate-700 text-slate-300 hover:border-slate-400 hover:text-white transition-all text-sm font-medium tracking-wider uppercase rounded-sm group">
+                Our Global Footprint
+                <ChevronRight className="ml-2 w-4 h-4 text-slate-500 group-hover:text-slate-300 transition-colors" />
               </button>
             </motion.div>
-        </div>
-      </main>
 
-      {/* Stats / Info Bar */}
-      <section className="bg-[#0a0f16] relative z-10 border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6">
+            {/* Who We Serve */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="pt-8 border-t border-white/10"
+            >
+              <p className="text-xs text-slate-500 tracking-[0.2em] uppercase font-medium mb-4">Advising Global Leaders</p>
+              <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm text-slate-400 font-light">
+                <span className="flex items-center gap-2"><div className="w-1 h-1 bg-amber-600 rounded-full"></div>Multinational Corporations</span>
+                <span className="flex items-center gap-2"><div className="w-1 h-1 bg-amber-600 rounded-full"></div>International Investors</span>
+                <span className="flex items-center gap-2"><div className="w-1 h-1 bg-amber-600 rounded-full"></div>Government Institutions</span>
+                <span className="flex items-center gap-2"><div className="w-1 h-1 bg-amber-600 rounded-full"></div>Corporate Partners</span>
+                <span className="flex items-center gap-2"><div className="w-1 h-1 bg-amber-600 rounded-full"></div>Growth-Focused Enterprises</span>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Stats / Info Bar */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="py-12 relative overflow-hidden -mx-6 px-6 md:mx-0 md:px-0"
+            className="mt-24 pt-12 border-t border-white/10 relative overflow-hidden -mx-6 px-6 md:mx-0 md:px-0"
           >
             {/* Gradient masks for smooth fade on edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#0a0f16] to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#0a0f16] to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute left-0 top-12 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#0a0f16] to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-12 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#0a0f16] to-transparent z-10 pointer-events-none"></div>
 
             <motion.div 
               animate={{ x: ["0%", "-50%"] }}
@@ -158,7 +169,7 @@ export default function Page() {
             </motion.div>
           </motion.div>
         </div>
-      </section>
+      </main>
 
       {/* Authority Positioning Section */}
       <section className="py-32 bg-[#0a0f16] relative z-10 border-b border-white/5">
@@ -236,7 +247,7 @@ export default function Page() {
             </button>
           </div>
 
-          <div className="flex flex-col border-t border-white/5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {[
               {
                 num: "01",
@@ -282,64 +293,35 @@ export default function Page() {
                   "Growth strategy development"
                 ]
               }
-            ].map((service, i) => {
-              const isActive = activeService === i;
-              return (
-                <div key={i} className="border-b border-white/5">
-                  <button 
-                    onClick={() => setActiveService(isActive ? null : i)}
-                    className="w-full text-left py-8 md:py-10 flex items-center justify-between group"
-                  >
-                    <div className="flex items-center gap-6 md:gap-12">
-                      <span className={`text-2xl md:text-3xl font-serif transition-colors duration-300 ${isActive ? 'text-amber-500' : 'text-white/20 group-hover:text-white/50'}`}>
-                        {service.num}
-                      </span>
-                      <h3 className={`text-2xl md:text-3xl lg:text-4xl font-serif transition-colors duration-300 ${isActive ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'}`}>
-                        {service.title}
-                      </h3>
-                    </div>
-                    <div className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 flex-shrink-0 ${isActive ? 'border-amber-500 text-amber-500 bg-amber-500/10' : 'border-white/10 text-white/50 group-hover:border-white/30 group-hover:text-white'}`}>
-                      <motion.div
-                        animate={{ rotate: isActive ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <ChevronRight className={`w-5 h-5 ${isActive ? '-rotate-90' : 'rotate-90'}`} />
-                      </motion.div>
-                    </div>
-                  </button>
-                  
-                  <AnimatePresence initial={false}>
-                    {isActive && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                        className="overflow-hidden"
-                      >
-                        <div className="pb-10 pl-14 md:pl-24 pr-4 md:pr-0">
-                          <p className="text-lg md:text-xl text-slate-400 font-light leading-relaxed mb-8 max-w-3xl">
-                            {service.desc}
-                          </p>
-                          
-                          <div>
-                            <p className="text-xs text-amber-500 tracking-[0.2em] uppercase font-bold mb-6">Capabilities Include</p>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 max-w-3xl">
-                              {service.includes.map((item, j) => (
-                                <div key={j} className="flex items-center text-slate-300 font-light">
-                                  <div className="w-1.5 h-1.5 rounded-full bg-amber-600 mr-4 flex-shrink-0"></div>
-                                  <span>{item}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+            ].map((service, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="p-8 sm:p-10 lg:p-12 border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] transition-all duration-500 group relative overflow-hidden flex flex-col h-full"
+              >
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-amber-600/0 via-amber-600/0 to-amber-600/0 group-hover:via-amber-600/50 transition-all duration-700"></div>
+                
+                <div className="text-5xl md:text-6xl font-serif text-white/5 mb-6 md:mb-8 group-hover:text-amber-900/20 transition-colors duration-500">{service.num}</div>
+                
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-serif text-white mb-4 group-hover:text-amber-500 transition-colors leading-snug">{service.title}</h3>
+                <p className="text-base md:text-lg text-slate-400 leading-relaxed font-light mb-8 md:mb-10 flex-grow">{service.desc}</p>
+                
+                <div className="mt-auto pt-6 md:pt-8 border-t border-white/5">
+                  <p className="text-xs text-slate-500 tracking-[0.2em] uppercase font-medium mb-4 md:mb-6">Capabilities Include</p>
+                  <ul className="space-y-3 md:space-y-4">
+                    {service.includes.map((item, j) => (
+                      <li key={j} className="flex items-start text-sm md:text-base text-slate-300 font-light">
+                        <div className="w-1.5 h-1.5 rounded-full bg-amber-600 mt-2 md:mt-2.5 mr-3 md:mr-4 flex-shrink-0"></div>
+                        <span className="leading-snug">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              );
-            })}
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -551,7 +533,7 @@ export default function Page() {
                 </div>
               </div>
               <p className="text-sm text-slate-400 leading-relaxed mb-8 max-w-sm">
-                Advising the world&apos;s leading organizations on their most critical strategic, operational, and regulatory challenges.
+                Advising the world's leading organizations on their most critical strategic, operational, and regulatory challenges.
               </p>
               <div className="flex items-center gap-5">
                 <a href="#" className="text-slate-500 hover:text-amber-500 transition-colors">
